@@ -134,3 +134,75 @@ def exercise18():
                """
 
     db_query(query)
+
+# Trečia dalis
+
+def names_view():
+    query = """ CREATE VIEW IF NOT EXISTS names
+                AS SELECT
+                first_name,
+                last_name
+                FROM employees"""
+
+    query_database(query)
+    query_database("SELECT * FROM names")
+
+def exercise19():
+    query = """ SELECT first_name, last_name, salary
+                FROM employees
+                WHERE salary > (SELECT salary FROM employees WHERE last_name = 'Bull')"""
+
+    query_database(query)
+
+
+def exercise20():
+    query = """ SELECT first_name, last_name, employee_id, manager_id, job_id
+            FROM employees
+            WHERE (employee_id IN (SELECT manager_id FROM employees))"""
+
+    query_database(query)
+
+
+def exercise21():
+    query = """ SELECT first_name, last_name, salary
+                FROM employees
+                WHERE salary > (SELECT AVG(salary) FROM employees)"""
+
+    query_database(query)
+
+
+def exercise22():
+    query = """ SELECT first_name, last_name, salary
+            FROM employees
+            WHERE salary = (SELECT min_salary FROM jobs
+            WHERE employees.job_id = jobs.job_id)"""
+
+    query_database(query)
+
+
+def exercise23():
+    query = """ SELECT first_name, last_name, salary
+                FROM employees
+                WHERE department_id IN (SELECT department_id FROM departments
+                WHERE depart_name LIKE 'IT%' AND
+                salary > (SELECT AVG(salary) from employees))"""
+
+    query_database(query)
+
+
+def exercise24():
+    query = """ SELECT first_name, last_name, salary
+                FROM employees
+                WHERE salary IN (SELECT salary FROM employees ORDER BY salary desc limit 3)"""
+
+    query_database(query)
+
+
+def eercise25():
+    query = """ SELECT first_name, last_name FROM employees
+                WHERE manager_id IN (SELECT employee_id FROM employees
+                WHERE department_id IN (SELECT department_id FROM departments
+                WHERE location_id IN (SELECT location_id FROM locations WHERE country_id = 'US')))"""
+
+    query_database(query)
+
