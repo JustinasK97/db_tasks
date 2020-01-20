@@ -135,8 +135,6 @@ def exercise18():
 
     db_query(query)
 
-# Trečia dalis
-
 def names_view():
     query = """ CREATE VIEW IF NOT EXISTS names
                 AS SELECT
@@ -152,7 +150,7 @@ def exercise19():
                 FROM employees
                 WHERE salary > (SELECT salary FROM employees WHERE last_name = 'Bull')"""
 
-    query_database(query)
+    db_query(query)
 
 
 def exercise20():
@@ -160,7 +158,7 @@ def exercise20():
             FROM employees
             WHERE (employee_id IN (SELECT manager_id FROM employees))"""
 
-    query_database(query)
+    db_query(query)
 
 
 def exercise21():
@@ -168,7 +166,7 @@ def exercise21():
                 FROM employees
                 WHERE salary > (SELECT AVG(salary) FROM employees)"""
 
-    query_database(query)
+    db_query(query)
 
 
 def exercise22():
@@ -177,7 +175,7 @@ def exercise22():
             WHERE salary = (SELECT min_salary FROM jobs
             WHERE employees.job_id = jobs.job_id)"""
 
-    query_database(query)
+    db_query(query)
 
 
 def exercise23():
@@ -187,7 +185,7 @@ def exercise23():
                 WHERE depart_name LIKE 'IT%' AND
                 salary > (SELECT AVG(salary) from employees))"""
 
-    query_database(query)
+    db_query(query)
 
 
 def exercise24():
@@ -195,14 +193,39 @@ def exercise24():
                 FROM employees
                 WHERE salary IN (SELECT salary FROM employees ORDER BY salary desc limit 3)"""
 
-    query_database(query)
+    db_query(query)
 
 
-def eercise25():
+def exercise25():
     query = """ SELECT first_name, last_name FROM employees
                 WHERE manager_id IN (SELECT employee_id FROM employees
                 WHERE department_id IN (SELECT department_id FROM departments
                 WHERE location_id IN (SELECT location_id FROM locations WHERE country_id = 'US')))"""
 
-    query_database(query)
+    db_query(query)
 
+# exercise1()
+# exercise2()
+# exercise3()
+# exercise4()
+# exercise5()
+# exercise6()
+# exercise7()
+# exercise8()
+# exercise9()
+# exercise10()
+# exercise11()
+# exercise12()
+# exercise13()
+# exercise14()
+# exercise15()
+# exercise16()
+# exercise17()
+# exercise18()
+# exercise19()
+# exercise20()
+# exercise21()
+# exercise22()
+# exercise23()
+# exercise24()
+# exercise25()
